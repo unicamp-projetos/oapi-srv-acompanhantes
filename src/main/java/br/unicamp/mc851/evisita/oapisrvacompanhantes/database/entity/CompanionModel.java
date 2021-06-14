@@ -14,14 +14,14 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcompanhanteModel {
+public class CompanionModel {
     @Id
     @NonNull
     private Long cpf;
-    private Long rg;
+    private String rg;
     @NonNull
-    private String nome;
+    private String name;
     @ElementCollection
     @NonNull
-    private Set<Long> idPacientes;
+    private Set<Long> patientsId;
 }

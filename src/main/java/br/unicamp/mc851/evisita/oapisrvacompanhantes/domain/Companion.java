@@ -1,4 +1,4 @@
-package br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto;
+package br.unicamp.mc851.evisita.oapisrvacompanhantes.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcompanhanteResponse {
-    private List<Long> idPacientes;
+public class Companion {
     private String nome;
+    private Long cpf;
+    private String rg;
+    private List<Long> patientsId;
 }
