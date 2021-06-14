@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "acompanhantes/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "companions/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class CompanionsController {
     private final SaveCompanionRequest saveCompanionRequest;
     private final GetCompanionResponse getCompanionResponse;
 
-    @PostMapping(value = "/acompanhante", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CompanionResponse> saveAcompanhante(
+    @PostMapping(value = "/companion", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CompanionResponse> saveCompanion(
             @RequestBody CompanionRequest companionRequest) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(saveCompanionRequest.execute(companionRequest));
     }
 
-    @GetMapping("/acompanhantes")
-    public ResponseEntity<List<CompanionResponse>> getAcompanhantes() {
+    @GetMapping("/companions")
+    public ResponseEntity<List<CompanionResponse>> getCompanions() {
         return ResponseEntity.ok(getCompanionResponse.execute());
     }
 
