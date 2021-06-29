@@ -1,6 +1,6 @@
 package br.unicamp.mc851.evisita.oapisrvacompanhantes.database.impl;
 
-import br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter.CompanionModelToCompanion;
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter.CompanionAdapter;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.database.GetCompanions;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.database.repository.CompanionRepository;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.domain.Companion;
@@ -18,7 +18,7 @@ public class GetCompanionsImpl implements GetCompanions {
     public List<Companion> execute() {
         return repository.findAll()
                 .stream()
-                .map(CompanionModelToCompanion::convert)
+                .map(CompanionAdapter::convert)
                 .collect(Collectors.toList());
     }
 }
