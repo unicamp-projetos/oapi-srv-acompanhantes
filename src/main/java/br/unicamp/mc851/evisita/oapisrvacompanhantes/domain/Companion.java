@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,4 +18,6 @@ public class Companion {
     private Long cpf;
     private String rg;
     private List<Long> patientsId;
+    private LocalDateTime arrivalTime;
+    private Boolean isVisiting;
 }

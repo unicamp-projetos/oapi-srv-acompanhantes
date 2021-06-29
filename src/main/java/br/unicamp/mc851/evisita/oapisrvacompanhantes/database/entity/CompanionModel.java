@@ -6,10 +6,11 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "acompanhantes")
+@Table(name = "companions")
 @Data
 @Builder
 @AllArgsConstructor
@@ -24,4 +25,7 @@ public class CompanionModel {
     @ElementCollection
     @NonNull
     private Set<Long> patientsId;
+    private LocalDateTime arrivalTime;
+    @NonNull
+    private Boolean isVisiting;
 }

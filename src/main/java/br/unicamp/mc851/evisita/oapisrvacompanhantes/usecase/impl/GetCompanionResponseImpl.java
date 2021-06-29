@@ -1,6 +1,6 @@
 package br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.impl;
 
-import br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter.CompanionToCompanionResponse;
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter.CompanionResponseAdapter;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionResponse;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.database.GetCompanions;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.GetCompanionResponse;
@@ -18,7 +18,7 @@ public class GetCompanionResponseImpl implements GetCompanionResponse {
     public List<CompanionResponse> execute() {
         return getCompanions.execute()
                 .stream()
-                .map(CompanionToCompanionResponse::convert)
+                .map(CompanionResponseAdapter::convert)
                 .collect(Collectors.toList());
     }
 }
