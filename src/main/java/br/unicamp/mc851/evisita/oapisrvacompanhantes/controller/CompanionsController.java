@@ -2,6 +2,7 @@ package br.unicamp.mc851.evisita.oapisrvacompanhantes.controller;
 
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionRequest;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionResponse;
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.GetCompanionByCpf;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.GetCompanionResponse;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.SaveCompanionRequest;
 import io.swagger.annotations.ApiOperation;
@@ -19,8 +20,10 @@ import java.util.List;
 @RequestMapping(value = "companions/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class CompanionsController {
+
     private final SaveCompanionRequest saveCompanionRequest;
     private final GetCompanionResponse getCompanionResponse;
+    private final GetCompanionByCpf getCompanionByCpf;
 
     @PostMapping(value = "/companion", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation("Save companions in database")
@@ -36,6 +39,16 @@ public class CompanionsController {
     @ApiResponse(code = 200, message = "Companions retrieved successfully")
     public ResponseEntity<List<CompanionResponse>> getCompanions() {
         return ResponseEntity.ok(getCompanionResponse.execute());
+    }
+
+    @GetMapping("/companion")
+    @ApiOperation("Retrieve the Companion by cpf")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Companion retrieved successfully"),
+            @ApiResponse(code = 400, message = "Could not find or retrieve companion")
+    })
+    public ResponseEntity<Object> retrieveCompanionByCpf(@RequestParam String cpf) {
+        return getCompanionByCpf.execute(cpf);
     }
 
 }

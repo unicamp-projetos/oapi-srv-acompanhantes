@@ -17,4 +17,5 @@ public class CompanionResponse {
     private String name;
     private Boolean isVisiting;
     private LocalDateTime arrivalTime;
+    private String cpf;
 }

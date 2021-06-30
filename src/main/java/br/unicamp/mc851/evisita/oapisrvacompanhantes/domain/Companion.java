@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Companion {
     private String nome;
-    private Long cpf;
+    private String cpf;
     private String rg;
     private List<Long> patientsId;
     private LocalDateTime arrivalTime;
