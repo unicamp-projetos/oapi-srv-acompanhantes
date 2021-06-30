@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CompanionRequest {
     @NonNull
-    private Long cpf;
+    private String cpf;
     private String rg;
     @NonNull
     private String name;

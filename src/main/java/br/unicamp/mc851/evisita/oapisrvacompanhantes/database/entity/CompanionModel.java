@@ -18,7 +18,7 @@ import java.util.Set;
 public class CompanionModel {
     @Id
     @NonNull
-    private Long cpf;
+    private String cpf;
     private String rg;
     @NonNull
     private String name;
