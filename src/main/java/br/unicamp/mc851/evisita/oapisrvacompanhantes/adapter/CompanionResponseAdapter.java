@@ -4,29 +4,22 @@ import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionRes
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.database.entity.CompanionModel;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.domain.Companion;
 import lombok.experimental.UtilityClass;
-
-import java.util.List;
+import org.springframework.beans.BeanUtils;
 
 @UtilityClass
 public class CompanionResponseAdapter {
 
     public static CompanionResponse convert(Companion companion) {
-        return CompanionResponse.builder()
-                .patientsId(companion.getPatientsId())
-                .name(companion.getNome())
-                .arrivalTime(companion.getArrivalTime())
-                .isVisiting(companion.getIsVisiting())
-                .cpf(companion.getCpf())
-                .build();
+        var companionResponse = CompanionResponse.builder().build();
+        BeanUtils.copyProperties(companion, companionResponse);
+        companionResponse.setVisitInfo(companion.getVisitInfo());
+        return companionResponse;
     }
 
     public static CompanionResponse convert(CompanionModel model) {
-        return CompanionResponse.builder()
-                .patientsId(List.copyOf(model.getPatientsId()))
-                .cpf(model.getCpf())
-                .isVisiting(model.getIsVisiting())
-                .arrivalTime(model.getArrivalTime())
-                .name(model.getName())
-                .build();
+        var companionResponse = CompanionResponse.builder().build();
+        BeanUtils.copyProperties(model, companionResponse);
+        companionResponse.setVisitInfo(model.getVisitInfo());
+        return companionResponse;
     }
 }

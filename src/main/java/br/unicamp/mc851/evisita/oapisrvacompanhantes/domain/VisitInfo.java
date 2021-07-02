@@ -5,15 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Companion {
-    private String nome;
-    private String cpf;
-    private String rg;
-    private List<VisitInfo> visitInfo;
+@AllArgsConstructor
+public class VisitInfo {
+    private String patientId;
+    private Boolean isVisiting;
+    private LocalDateTime arrivalTime;
 }

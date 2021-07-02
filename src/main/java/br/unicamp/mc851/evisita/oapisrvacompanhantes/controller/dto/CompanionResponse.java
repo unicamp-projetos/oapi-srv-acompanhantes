@@ -1,11 +1,11 @@
 package br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto;
 
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.domain.VisitInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -13,9 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanionResponse {
-    private List<Long> patientsId;
+    private List<VisitInfo> visitInfo;
     private String name;
-    private Boolean isVisiting;
-    private LocalDateTime arrivalTime;
     private String cpf;
 }

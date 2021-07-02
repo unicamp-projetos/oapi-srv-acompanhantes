@@ -1,13 +1,13 @@
 package br.unicamp.mc851.evisita.oapisrvacompanhantes.database.entity;
 
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.domain.VisitInfo;
 import lombok.*;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "companions")
@@ -24,8 +24,5 @@ public class CompanionModel {
     private String name;
     @ElementCollection
     @NonNull
-    private Set<Long> patientsId;
-    private LocalDateTime arrivalTime;
-    @NonNull
-    private Boolean isVisiting;
+    private List<VisitInfo> visitInfo;
 }

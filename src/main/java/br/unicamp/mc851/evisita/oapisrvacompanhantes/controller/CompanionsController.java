@@ -1,10 +1,12 @@
 package br.unicamp.mc851.evisita.oapisrvacompanhantes.controller;
 
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter.CompanionAdapter;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionRequest;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.controller.dto.CompanionResponse;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.GetCompanionByCpf;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.GetCompanionResponse;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.SaveCompanionRequest;
+import br.unicamp.mc851.evisita.oapisrvacompanhantes.usecase.UpdateCompanion;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -24,6 +26,7 @@ public class CompanionsController {
     private final SaveCompanionRequest saveCompanionRequest;
     private final GetCompanionResponse getCompanionResponse;
     private final GetCompanionByCpf getCompanionByCpf;
+    private final UpdateCompanion updateCompanion;
 
     @PostMapping(value = "/companion", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation("Save companions in database")
@@ -41,14 +44,28 @@ public class CompanionsController {
         return ResponseEntity.ok(getCompanionResponse.execute());
     }
 
-    @GetMapping("/companion")
+    @GetMapping("/companion/{cpf}")
     @ApiOperation("Retrieve the Companion by cpf")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Companion retrieved successfully"),
             @ApiResponse(code = 400, message = "Could not find or retrieve companion")
     })
-    public ResponseEntity<Object> retrieveCompanionByCpf(@RequestParam String cpf) {
+    public ResponseEntity<Object> retrieveCompanionByCpf(@PathVariable String cpf) {
         return getCompanionByCpf.execute(cpf);
+    }
+
+    @PutMapping("/companion")
+    @ApiOperation("Update companion")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Companion updated successfully"),
+            @ApiResponse(code = 400, message = "Companion not updated")
+    })
+    public ResponseEntity<Object> updateCompanion(@RequestBody CompanionRequest companionRequest) {
+        if (updateCompanion.execute(CompanionAdapter.convert(companionRequest))) {
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 
 }

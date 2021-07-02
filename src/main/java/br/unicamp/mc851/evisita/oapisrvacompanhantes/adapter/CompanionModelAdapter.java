@@ -3,20 +3,15 @@ package br.unicamp.mc851.evisita.oapisrvacompanhantes.adapter;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.database.entity.CompanionModel;
 import br.unicamp.mc851.evisita.oapisrvacompanhantes.domain.Companion;
 import lombok.experimental.UtilityClass;
-
-import java.util.Set;
+import org.springframework.beans.BeanUtils;
 
 @UtilityClass
 public class CompanionModelAdapter {
 
     public static CompanionModel convert(Companion companion) {
-        return CompanionModel.builder()
-                .cpf(companion.getCpf())
-                .rg(companion.getRg())
-                .patientsId(Set.copyOf(companion.getPatientsId()))
-                .name(companion.getNome())
-                .isVisiting(companion.getIsVisiting())
-                .arrivalTime(companion.getArrivalTime())
-                .build();
+        var model = CompanionModel.builder().build();
+        BeanUtils.copyProperties(companion, model);
+        model.setVisitInfo(companion.getVisitInfo());
+        return model;
     }
 }
