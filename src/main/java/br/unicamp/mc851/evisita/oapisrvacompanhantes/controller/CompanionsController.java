@@ -37,6 +37,7 @@ public class CompanionsController {
     @GetMapping("/companions")
     @ApiOperation("Retrieve all companions saved in database")
     @ApiResponse(code = 200, message = "Companions retrieved successfully")
+    @CrossOrigin("http://localhost:4200")
     public ResponseEntity<List<CompanionResponse>> getCompanions() {
         return ResponseEntity.ok(getCompanionResponse.execute());
     }

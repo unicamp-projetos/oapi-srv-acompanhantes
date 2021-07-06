@@ -15,8 +15,8 @@ public class SaveCompanionRequestImpl implements SaveCompanionRequest {
     private final SaveCompanion saveCompanion;
     @Override
     public CompanionResponse execute(CompanionRequest companionRequest) {
-        var acompanhante = saveCompanion.execute(
+        var companion = saveCompanion.execute(
                 CompanionAdapter.convert(companionRequest));
-        return CompanionResponseAdapter.convert(acompanhante);
+        return CompanionResponseAdapter.convert(companion);
     }
 }
